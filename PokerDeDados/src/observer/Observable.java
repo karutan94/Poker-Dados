@@ -12,19 +12,13 @@ public abstract class Observable {
 		this.observadores = new ArrayList<Observador>();
 	}
 	
-	public abstract void notificar(Object evento);
-	/*
-	 * {
+	public void agregarObservador(Observador nuevoObservador) {
 		this.observadores.add(nuevoObservador);
 	}
-	 */
 	
-	public abstract void agregarObservador(Observador nuevoObservador);
-	/*
-	 * {
+	public void notificar(Object evento) {
 		for (Observador observador : observadores) {
 			observador.actualizar(this, evento);
 		}
 	}
-	 */
 }

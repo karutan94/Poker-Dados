@@ -233,30 +233,46 @@ public class Juego extends Observable implements IJuego {
 	public void setEstado(EstadoJuego nuevoEstado) {
 		this.estado = nuevoEstado;
 	}
-	
-	/*
-	 * --------------------------------------------------------
-	 * 					Metodos de Observable
-	 * --------------------------------------------------------
-	*/
-
-	@Override
-	public void agregarObservador(Observador nuevoObservador) {
-		this.observadores.add(nuevoObservador);
-	}
-	
-	@Override
-	public void notificar(Object evento) {
-		for (Observador observador : observadores) {
-			observador.actualizar(this, evento);
-		}
-	}
-	
+		
 	/*
 	 * --------------------------------------------------------
 	 * 					Reglas del juego
 	 * --------------------------------------------------------
 	*/
+	public void pokerReal() {
+		boolean flag = true;
+		int[] dados = cubilete.getTodosLosDados();		
+		int i = 0;
+		while ((i <= dados.length) && (flag)) {
+			
+		}
+	}
 	
+	public void pokerCuadruple() {
+		
+	}
 	
+	public void full() {
+		
+	}
+	
+	public void escaleraMayor() {
+		
+	}
+	
+	public void escaleraMenor() {
+		
+	}
+	
+	public void pierna() {
+		
+	}
+	
+	public void paresDobles() {
+		
+	}
+	
+	public void pares() {
+		
+	}
 }

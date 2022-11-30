@@ -3,6 +3,7 @@ package controlador;
 import java.util.Collection;
 import java.util.ArrayList;
 
+import modelo.EstadoJuego;
 import modelo.Evento;
 import modelo.IJuego;
 import modelo.Juego;
@@ -49,6 +50,21 @@ public class Controlador implements Observador{
 		return juego.getNombreDeJugadores();
 	}
 	
+	//Iniciar juego
+	public void iniciarJuego() {
+		juego.iniciar();
+		juego.ponerTodoEnCubilete();
+		tirarDados();
+	}
+	
+	public void tirarDados() {
+		juego.tirarCubilete();
+	}
+	
+	public EstadoJuego getEstadoJuego() {
+		return juego.getEstado();
+	}
+	
 	/*
 	 * Metodo actualizar, que en base a los cambios ocurridos en el modelo, avisa a las vistas.
 	 */
@@ -78,21 +94,25 @@ public class Controlador implements Observador{
 				}
 				break;
 			case FALTAN_JUGADORES:
+				for (IVistaDeJuego vista: this.vistas) {
+					vista.faltanJugadores();
+				}
 				break;
 			case MAXIMO_DE_JUGADORES:
 				for (IVistaDeJuego vista: this.vistas) {
 					vista.maximoDeJugadores();
 				}
 				break;
-			case LISTO_PARA_INICIAR:
-				break;
 			case JUEGO_INICIADO:
+				for (IVistaDeJuego vista: this.vistas) {
+					vista.juegoIniciado();
+				}
 				break;
 			case CAMBIO_TURNO:
 				break;
 			case CAMBIO_DADOS:
 				break;
-			case FINALIZO:
+			case JUEGO_FINALIZADO:
 				break;
 			}
 		}

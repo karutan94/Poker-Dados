@@ -11,12 +11,18 @@ public class VistaConsola implements IVistaDeJuego {
 	
 	private Controlador controlador;
 	
+	boolean jugando;
+	
+	boolean finalizado;
+	
 	//Constructor
 	public VistaConsola(Controlador controlador) {
 		teclado = new Scanner(System.in);
 		this.controlador = controlador;
 		//Le pide al controlador que registre esta vista
 		this.controlador.registrarVista(this);
+		this.jugando = false;
+		this.finalizado = false;
 	}
 	
 	//Metodo para inicar la vista de consola
@@ -58,7 +64,7 @@ public class VistaConsola implements IVistaDeJuego {
 				mostrarNombreJugadores();
 				break;
 			case 4:
-				
+				iniciarJuego();
 				break;
 			case 0:
                 System.exit(0);                         
@@ -72,28 +78,30 @@ public class VistaConsola implements IVistaDeJuego {
 	
 	/*
 	 * --------------------------------------------------------
+	 * 						Menu juego
+	 * --------------------------------------------------------
+	*/
+	
+	public void menuDeJuego() {
+		while (jugando) {
+			
+		}
+		
+	}
+	
+	/*
+	 * --------------------------------------------------------
 	 * 						Alta de jugador
 	 * --------------------------------------------------------
 	*/
 	public void menuAltaJugador() {
-		System.out.println("No se pueden repetir los nombres de jugadores");
-		System.out.println("");
+		System.out.println("╔═════════════════════════════════════════════╗");
+		System.out.println("║No se pueden repetir los nombres de jugadores║");
+		System.out.println("╚═════════════════════════════════════════════╝");
 		System.out.println("Ingrese el nombre del Jugador: ");
 		String nombre = teclado.next();
 		teclado.nextLine();
 		controlador.agregarJugador(nombre);
-	}
-	
-	public void notificarJugadorAgregado() {
-		System.out.println("╔═════════════════════════════════╗");
-		System.out.println("║         Jugador agregado        ║");
-		System.out.println("╚═════════════════════════════════╝");
-	}
-	
-	public void notificarJugadorEliminado() {
-		System.out.println("╔═════════════════════════════════╗");
-		System.out.println("║         Jugador eliminado       ║");
-		System.out.println("╚═════════════════════════════════╝");
 	}
 	
 	/*
@@ -125,13 +133,6 @@ public class VistaConsola implements IVistaDeJuego {
 	}
 	
 	/*
-	 * --------------------------------------------------------
-	 * 						Menu juego
-	 * --------------------------------------------------------
-	*/
-	
-	
-	/*
 	 * Cuando se producen cambios en la lista de jugadores,
 	 * muestra en pantalla la nueva lista.
 	 */
@@ -142,6 +143,29 @@ public class VistaConsola implements IVistaDeJuego {
 		}
 	}
 	
+	//Iniciar juego
+	public void iniciarJuego() {
+		controlador.iniciarJuego();
+	}
+	
+	/*
+	 * --------------------------------------------------------
+	 * 					Mensajes del juego
+	 * --------------------------------------------------------
+	*/
+	
+	public void notificarJugadorAgregado() {
+		System.out.println("╔═════════════════════════════════╗");
+		System.out.println("║         Jugador agregado        ║");
+		System.out.println("╚═════════════════════════════════╝");
+	}
+	
+	public void notificarJugadorEliminado() {
+		System.out.println("╔═════════════════════════════════╗");
+		System.out.println("║         Jugador eliminado       ║");
+		System.out.println("╚═════════════════════════════════╝");
+	}
+	
 	//Mensaje de jugador existente
 	public void jugadorExistente() {
 		System.out.println("╔═════════════════════════════════╗");
@@ -149,8 +173,8 @@ public class VistaConsola implements IVistaDeJuego {
 		System.out.println("║         Nombre repetido         ║");
 		System.out.println("╚═════════════════════════════════╝");
 	}
-	
-	//Mensaje de que se alcanzo el maximo de jugadores
+		
+		//Mensaje de que se alcanzo el maximo de jugadores
 	public void maximoDeJugadores() {
 		System.out.println("╔═════════════════════════════════╗");
 		System.out.println("║        Jugador no cargado       ║");
@@ -158,4 +182,18 @@ public class VistaConsola implements IVistaDeJuego {
 		System.out.println("╚═════════════════════════════════╝");
 	}
 	
+	public void faltanJugadores() {
+		System.out.println("╔═════════════════════════════════╗");
+		System.out.println("║        Juego no iniciado        ║");
+		System.out.println("║         Faltan jugadores        ║");
+		System.out.println("╚═════════════════════════════════╝");
+	}
+	
+	public void juegoIniciado() {
+		System.out.println("╔═════════════════════════════════╗");
+		System.out.println("║        Juego iniciado           ║");
+		System.out.println("╚═════════════════════════════════╝");
+		jugando = true;
+		menuDeJuego();
+	}
 }

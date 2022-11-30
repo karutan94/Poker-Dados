@@ -16,4 +16,11 @@ public interface IVistaDeJuego {
 	
 	void maximoDeJugadores();
 	
+	void iniciarJuego();
+	
+	void juegoIniciado();
+	
+	void faltanJugadores();
+	
+	
 }

@@ -22,6 +22,22 @@ public interface IJuego {
 	
 	//cambiarTurnoDeJugador();
 	
+	public void pokerReal();
+	
+	public void pokerCuadruple();
+	
+	public void full();
+	
+	public void escaleraMayor();
+	
+	public void escaleraMenor();
+	
+	public void pierna();
+	
+	public void paresDobles();
+	
+	public void pares();
+	
 	void reiniciarJuego(boolean reiniciarCompleto);
 	
 	void ponerEnCubilete(int dado);
